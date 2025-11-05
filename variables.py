@@ -1,0 +1,1 @@
+# Donde están declaradas las constantes
