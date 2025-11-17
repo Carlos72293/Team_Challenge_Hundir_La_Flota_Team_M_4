@@ -44,7 +44,9 @@ while True:
             print(f"→ Guardado: Barco de tamaño {tamaño}, orientación {orientacion}, en ({fila}, {col})")
 
     print("\nColocando barcos del rival aleatoriamente...")
-    # colocar_barcos_aleatorios(tablero_rival)
+    flota_peq_aleatorio()
+    flota_med_aleatoria(tablero_rival, flota_peq)
+    flota_grand_aleatoria(tablero_rival, flota_peq,flota_med)
 
     turno_jugador = True
 
@@ -96,6 +98,9 @@ while True:
     # FIN DE PARTIDA / REINICIO
     # ==============================
     print("\nPartida terminada.")
+    calcular_estadisticas(tablero)
+    calcular_estadisticas(tablero_rival)
+    
     opcion = input("¿Quieres jugar otra vez? (s/n): ").lower()
     if opcion != "s":
         print("¡Gracias por jugar! Hasta la próxima.")
