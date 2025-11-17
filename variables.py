@@ -4,8 +4,18 @@ import numpy as np
 import random
 
 # Barcos (nombre: eslora)
-barco_2 = [(0,1), (1,1)]
-barco_4 = [(1,3), (1,4), (1,5), (1,6)]
+BARCOS = {
+    "barco_1": 1,
+    "barco_2": 1,
+    "barco_3": 1,
+    "barco_4": 1,
+    "barco_5": 2,
+    "barco_6": 2,
+    "barco_7": 2,
+    "barco_8": 3,
+    "barco_9": 3,
+    "barco_10": 4,
+}
 
 # Tableros
 tablero_jugador = np.full((10, 10), " ")
