@@ -17,7 +17,7 @@ def crear_tablero(filas=10, columnas=10):
     # Crea un tablero vacío usando NumPy.
     # Cada casilla empieza como AGUA (0).
  
-    return np.full((filas, columnas), AGUA , dtype=int)
+    return np.full((filas, columnas))
 
 def colocar_barco(tablero, fila, columna, longitud, orientacion): 
    
