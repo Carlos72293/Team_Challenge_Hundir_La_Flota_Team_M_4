@@ -13,7 +13,7 @@ tablero_rival = np.full((10, 10), " ")
 tablero_rival_visible = np.full((10, 10), " ")
 
 # Convención de códigos:
-AGUA = "~"
-BARCO = "B"
-IMPACTO = "X"
-FALLO = "O"
+AGUA = "~"  # casilla sin disparar ni barco
+BARCO = "B"  # casilla con barco intacto (solo en tablero propio)
+IMPACTO = "X" # casilla con barco impactado
+FALLO = "O"  # casilla donde se disparó y no había barco
