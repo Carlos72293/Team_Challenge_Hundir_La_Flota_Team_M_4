@@ -44,9 +44,10 @@ while True:
             print(f"→ Guardado: Barco de tamaño {tamaño}, orientación {orientacion}, en ({fila}, {col})")
 
     print("\nColocando barcos del rival aleatoriamente...")
-    flota_peq_aleatorio()
-    flota_med_aleatoria(tablero_rival, flota_peq)
-    flota_grand_aleatoria(tablero_rival, flota_peq,flota_med)
+    flota_peq,tablero_rival = flota_peq_aleatorio()
+    flota_med,tablero_rival = flota_med_aleatoria(tablero_rival, flota_peq)
+    flota_grand,tablero_rival = flota_grand_aleatoria(tablero_rival, flota_peq,flota_med)
+    flota_gigante, tablero_rival =  flota_enorme_aleatoria(tablero_rival, flota_peq,flota_med,flota_grand):
 
     turno_jugador = True
 
