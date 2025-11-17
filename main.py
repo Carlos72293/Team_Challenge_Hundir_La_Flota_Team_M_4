@@ -29,7 +29,11 @@ while True:
     print("- 2 barcos de 3 posiciones")
     print("- 1 barco de 4 posiciones")
 
-    barcos = {1: 4, 2: 3, 3: 2, 4: 1}
+    barco_peq1 = tuple(input(f'Dime las coordenadas de tu primer barco pequeño (1/4):\n'))
+    barco_peq2 = tuple(input(f'Dime las coordenadas de tu primer barco pequeño (2/4):\n'))
+    barco_peq3 = tuple(input(f'Dime las coordenadas de tu primer barco pequeño (3/4):\n'))
+    barco_peq4 = tuple(input(f'Dime las coordenadas de tu primer barco pequeño (4/4):\n'))
+    flota_peq_jugador = [barco_peq1,barco_peq2,barco_peq3,barco_peq4]
     for tamaño, cantidad in barcos.items():
         for n in range(cantidad):
             print(f"\nBarco {n+1} de tamaño {tamaño}")
@@ -55,7 +59,7 @@ while True:
     # BUCLE DE PARTIDA
     # ==============================
     while True:
-        print(tablero_jugador,'\n', tablero_rival_visible)
+        print(tablero_jugador,'\n', tablero_rival)
 
         if turno_jugador:
             print(f"\nTurno de {nombre}:")
