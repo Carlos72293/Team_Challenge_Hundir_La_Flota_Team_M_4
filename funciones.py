@@ -177,10 +177,9 @@ if __name__ == "__main__":
     print()
 
 
-def flota_peq_aleatorio():
+def flota_peq_aleatorio(tablero):
     # Dimensiones de tablero:
-    tablero_B = np.full((10,10), ' ')
-    filas_totales = tablero_B.shape[0]
+    filas_totales = tablero.shape[0]
     columnas_totales = tablero_B.shape[1] 
     # Fijamos unos numeros random que tendrá la computadora.
     random.seed(42)
@@ -205,14 +204,14 @@ def flota_peq_aleatorio():
 
     return flota_peq, tablero_B
 
-flota_peq, tablero_B = flota_peq_aleatorio()
+
 
 
 
 
 def flota_med_aleatoria(tablero, flota_peq):
-    filas_totales = tablero_B.shape[0]
-    columnas_totales = tablero_B.shape[1] 
+    filas_totales = tablero.shape[0]
+    columnas_totales = tablero.shape[1] 
     
     ocupadas = set(flota_peq)
     flota_med=[]
@@ -264,13 +263,12 @@ def flota_med_aleatoria(tablero, flota_peq):
             break
     return flota_med,tablero
 
-flota_med, tablero_B = flota_med_aleatoria(tablero_B,flota_peq) # Guardo asi la variable ya que la funcion me da un lista: [(flota_med), tablero_B]
 
 
 
 def flota_grand_aleatoria(tablero, flota_peq,flota_med):
-    filas_totales = tablero_B.shape[0]
-    columnas_totales = tablero_B.shape[1] 
+    filas_totales = tablero.shape[0]
+    columnas_totales = tablero.shape[1] 
 
     ocupadas = set(flota_peq) 
     for barco in flota_med:
@@ -335,13 +333,13 @@ def flota_grand_aleatoria(tablero, flota_peq,flota_med):
             break
     return flota_grand,tablero
 
-flota_grand, tablero_B = flota_grand_aleatoria(tablero_B,flota_peq,flota_med)
+
 
 
 
 def flota_enorme_aleatoria(tablero, flota_peq,flota_med,flota_grand):
-    filas_totales = tablero_B.shape[0]
-    columnas_totales = tablero_B.shape[1] 
+    filas_totales = tablero.shape[0]
+    columnas_totales = tablero.shape[1] 
 
     ocupadas = set(flota_peq) 
     for barco in flota_med:
@@ -422,6 +420,6 @@ def flota_enorme_aleatoria(tablero, flota_peq,flota_med,flota_grand):
             break
     return flota_med,tablero
 
-flota_grand, tablero_B = flota_enorme_aleatoria(tablero_B,flota_peq,flota_med,flota_grand)
+
 
 
