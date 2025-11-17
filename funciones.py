@@ -131,6 +131,12 @@ def disparo_rival(tablero):
                 print(f"Agua en ({fila}, {col}).")
                 print(tablero)
                 return False
+            
+def comprobar_derrota(tablero):                                     
+    """Devuelve True si no quedan barcos ('O') en el tablero."""
+    return not np.any(tablero == "O")
+
+            
 if __name__ == "__main__":
     # 1. Crear tablero vacío
     tablero = crear_tablero(10, 10)
