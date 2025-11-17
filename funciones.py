@@ -202,7 +202,7 @@ def flota_peq_aleatorio(tablero):
 
             break
 
-    return flota_peq, tablero_B
+    return flota_peq, tablero
 
 
 
