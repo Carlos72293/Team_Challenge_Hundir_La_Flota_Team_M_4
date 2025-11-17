@@ -1,13 +1,14 @@
 # Aquí irán las funciones
 import numpy as np
 import random
+from variables import *
+
 tablero = np.zeros((10, 10), dtype=int) # Crear un tablero de 10x10 lleno de ceros
 
 import numpy as np
 
 # Convención de códigos:
 AGUA = 0
-BARCO = 1
 IMPACTO = 2
 FALLO = 3
 
@@ -198,7 +199,7 @@ def flota_peq_aleatorio(tablero):
 
             flota_peq.append(primera_pieza)
             ocupadas.add(primera_pieza)
-            tablero[primera_pieza] = 'P'
+            tablero[primera_pieza] = BARCO
 
             break
 
@@ -255,8 +256,8 @@ def flota_med_aleatoria(tablero, flota_peq):
             ocupadas.add(primera_pieza)
             ocupadas.add(segunda_pieza)
 
-            tablero[primera_pieza] = 'M'
-            tablero[segunda_pieza] = 'M'
+            tablero[primera_pieza] = BARCO
+            tablero[segunda_pieza] = BARCO
 
 
 
@@ -325,9 +326,9 @@ def flota_grand_aleatoria(tablero, flota_peq,flota_med):
             ocupadas.add(segunda_pieza)
             ocupadas.add(tercera_pieza)
 
-            tablero[primera_pieza] = 'G'
-            tablero[segunda_pieza] = 'G'
-            tablero[tercera_pieza] = 'G'
+            tablero[primera_pieza] = BARCO
+            tablero[segunda_pieza] = BARCO
+            tablero[tercera_pieza] = BARCO
 
 
             break
@@ -411,10 +412,10 @@ def flota_enorme_aleatoria(tablero, flota_peq,flota_med,flota_grand):
             ocupadas.add(tercera_pieza)
             ocupadas.add(cuarta_pieza)
 
-            tablero[primera_pieza] = 'E'
-            tablero[segunda_pieza] = 'E'
-            tablero[tercera_pieza] = 'E'
-            tablero[cuarta_pieza] = 'E'
+            tablero[primera_pieza] = BARCO
+            tablero[segunda_pieza] = BARCO
+            tablero[tercera_pieza] = BARCO
+            tablero[cuarta_pieza] = BARCO
 
 
             break
