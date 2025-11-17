@@ -69,7 +69,7 @@ while True:
 
             if resultado is True:
                 print("🎯 ¡Has acertado! Vuelves a disparar.")
-            elif resultado is False:
+            elif resultado is False:pass
                 print("🌊 Has fallado. Le toca a la máquina.")
                 turno_jugador = False
             else:
