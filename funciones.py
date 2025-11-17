@@ -1,6 +1,6 @@
 # Aquí irán las funciones
 import numpy as np
-
+import random
 tablero = np.zeros((10, 10), dtype=int) # Crear un tablero de 10x10 lleno de ceros
 
 import numpy as np
@@ -96,6 +96,41 @@ def mostrar_tablero(tablero, mostrar_barcos=True):
         elif f == 9:
             print(f"{f+1} {fila_str}")
 
+def disparar(tablero_rival, tablero_rival_2, fila, col):
+    # Devuelve True si acierta, False si falla, None si ya disparó ahí.
+    if tablero_rival[fila, col] == "O":
+        tablero_rival[fila, col] = "X"
+        tablero_rival_2[fila, col] = "X"
+        print(f"¡Impacto en ({fila}, {col})!")
+        print(tablero_rival_2)
+        return True
+    elif tablero_rival[fila, col] == " ":
+        tablero_rival[fila, col] = "-"
+        tablero_rival_2[fila, col] = "-"
+        print(f"Agua en ({fila}, {col}).")
+        print(tablero_rival_2)
+        return False
+    else:
+        print(f"Ya se disparó en ({fila}, {col}).")
+        return None
+
+def disparo_rival(tablero):
+    filas, cols = tablero.shape
+    while True:
+        fila = random.randint(0, filas - 1)
+        col = random.randint(0, cols - 1)
+
+        if tablero[fila, col] in ["O", " "]:
+            if tablero[fila, col] == "O":
+                tablero[fila, col] = "X"
+                print(f"¡Impacto en ({fila}, {col})!")
+                print(tablero)
+                return True
+            else:
+                tablero[fila, col] = "-"
+                print(f"Agua en ({fila}, {col}).")
+                print(tablero)
+                return False
 if __name__ == "__main__":
     # 1. Crear tablero vacío
     tablero = crear_tablero(10, 10)
