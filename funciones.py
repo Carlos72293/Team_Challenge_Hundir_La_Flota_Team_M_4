@@ -175,3 +175,5 @@ if __name__ == "__main__":
     else:
         print("❌ No se ha producido error y debería haberse producido.")
     print()
+
+
