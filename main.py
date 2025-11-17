@@ -17,7 +17,7 @@ while True:
     nombre = input("Introduce tu nombre: ")
 
     # Crear tableros
-    tablero_jugador = np.full((10, 10), " ")
+    tablero_jugador = np.full((10, 10), " ")    #Aqui habrá que poner la funcion de crear tableros
     tablero_rival = np.full((10, 10), " ")
     tablero_rival_visible = np.full((10, 10), " ")
 
@@ -52,7 +52,7 @@ while True:
     # BUCLE DE PARTIDA
     # ==============================
     while True:
-        print(tablero_jugador/n, tablero_rival_2)
+        print(tablero_jugador/n, tablero_rival_visible)
 
         if turno_jugador:
             print(f"\nTurno de {nombre}:")
