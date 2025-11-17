@@ -17,9 +17,9 @@ while True:
     nombre = input("Introduce tu nombre: ")
 
     # Crear tableros
-    tablero_jugador = np.full((10, 10), " ")    #Aqui habrá que poner la funcion de crear tableros
-    tablero_rival = np.full((10, 10), " ")
-    tablero_rival_visible = np.full((10, 10), " ")
+    tablero_jugador = crear_tablero(filas=10, columnas=10)    
+    tablero_rival = crear_tablero(filas=10, columnas=10)
+    tablero_rival_visible = crear_tablero(filas=10, columnas=10)
 
     # Colocar barcos (solo inputs del jugador)
     print(f"\nHola {nombre}, coloca tus barcos en el tablero.")
