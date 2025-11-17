@@ -180,7 +180,7 @@ if __name__ == "__main__":
 def flota_peq_aleatorio(tablero):
     # Dimensiones de tablero:
     filas_totales = tablero.shape[0]
-    columnas_totales = tablero_B.shape[1] 
+    columnas_totales = tablero.shape[1] 
     # Fijamos unos numeros random que tendrá la computadora.
     random.seed(42)
 
@@ -198,7 +198,7 @@ def flota_peq_aleatorio(tablero):
 
             flota_peq.append(primera_pieza)
             ocupadas.add(primera_pieza)
-            tablero_B[primera_pieza] = 'P'
+            tablero[primera_pieza] = 'P'
 
             break
 
