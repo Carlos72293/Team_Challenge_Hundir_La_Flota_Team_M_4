@@ -2,13 +2,9 @@
 import numpy as np
 import random
 from variables import *
-
-tablero = np.zeros((10, 10), dtype=int) # Crear un tablero de 10x10 lleno de ceros
-
 import numpy as np
 
 # Convención de códigos:
-AGUA = 0
 IMPACTO = 2
 FALLO = 3
 
@@ -17,7 +13,8 @@ def crear_tablero(filas=10, columnas=10):
     # Crea un tablero vacío usando NumPy.
     # Cada casilla empieza como AGUA (0).
  
-    return np.full((filas, columnas))
+    return np.full((filas, columnas), AGUA)
+
 
 def colocar_barco(tablero, fila, columna, longitud, orientacion): 
    

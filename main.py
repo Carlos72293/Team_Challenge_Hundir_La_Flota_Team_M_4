@@ -55,7 +55,7 @@ while True:
     # BUCLE DE PARTIDA
     # ==============================
     while True:
-        print(tablero_jugador/n, tablero_rival_visible)
+        print(tablero_jugador,'\n', tablero_rival_visible)
 
         if turno_jugador:
             print(f"\nTurno de {nombre}:")
@@ -69,7 +69,7 @@ while True:
 
             if resultado is True:
                 print("🎯 ¡Has acertado! Vuelves a disparar.")
-            elif resultado is False:pass
+            elif resultado is False:
                 print("🌊 Has fallado. Le toca a la máquina.")
                 turno_jugador = False
             else:
