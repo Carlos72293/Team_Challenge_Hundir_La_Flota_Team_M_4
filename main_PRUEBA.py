@@ -38,23 +38,23 @@ while True:
 
     # 4 barcos pequeños
     for i in range(4):
-        coords = colocar_barco_jugador(tablero_jugador, 1, "barco pequeño", "P")
+        coords = colocar_barco_jugador(tablero_jugador, 1, "barco pequeño", BARCO)
         flota_jugador.append(coords)
         print(tablero_jugador)
     # 3 barcos medianos
     for i in range(3):
-        coords = colocar_barco_jugador(tablero_jugador, 2, "barco mediano", "M")
+        coords = colocar_barco_jugador(tablero_jugador, 2, "barco mediano",BARCO)
         flota_jugador.append(coords)
         print(tablero_jugador)
 
     # 2 barcos grandes
     for i in range(2):
-        coords = colocar_barco_jugador(tablero_jugador, 3, "barco grande", "G")
+        coords = colocar_barco_jugador(tablero_jugador, 3, "barco grande", BARCO)
         flota_jugador.append(coords)
         print(tablero_jugador)
 
     # 1 barco gigante
-    coords = colocar_barco_jugador(tablero_jugador, 4, "barco gigante", "E")
+    coords = colocar_barco_jugador(tablero_jugador, 4, "barco gigante", BARCO)
     flota_jugador.append(coords)
     
 
@@ -69,6 +69,7 @@ while True:
     flota_grand, tablero_rival = flota_grand_aleatoria(tablero_rival, flota_peq, flota_med)
     flota_gigante, tablero_rival = flota_enorme_aleatoria(tablero_rival, flota_peq, flota_med, flota_grand)
 
+    
     turno_jugador = True
 
     # ==============================

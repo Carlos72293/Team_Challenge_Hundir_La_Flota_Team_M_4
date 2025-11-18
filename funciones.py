@@ -18,6 +18,7 @@ def crear_tablero(filas=10, columnas=10):
 
 def colocar_barco_jugador(tablero, longitud, nombre_barco, simbolo):
     filas, columnas = tablero.shape
+    
 
     while True:
         print(f"\nColocando {nombre_barco} (tamaño {longitud})")
@@ -134,15 +135,15 @@ def mostrar_tablero(tablero, ocultar_barcos=False):
 
 def disparar(tablero_rival, tablero_rival_2, fila, col):
     # Devuelve True si acierta, False si falla, None si ya disparó ahí.
-    if tablero_rival[fila, col] == "O":
-        tablero_rival[fila, col] = "X"
-        tablero_rival_2[fila, col] = "X"
+    if tablero_rival[fila, col] == BARCO:
+        tablero_rival[fila, col] = IMPACTO
+        tablero_rival_2[fila, col] = IMPACTO
         print(f"¡Impacto en ({fila}, {col})!")
         print(tablero_rival_2)
         return True
-    elif tablero_rival[fila, col] == " ":
-        tablero_rival[fila, col] = "-"
-        tablero_rival_2[fila, col] = "-"
+    elif tablero_rival[fila, col] == AGUA:
+        tablero_rival[fila, col] = FALLO
+        tablero_rival_2[fila, col] = FALLO
         print(f"Agua en ({fila}, {col}).")
         print(tablero_rival_2)
         return False
@@ -156,21 +157,21 @@ def disparo_rival(tablero):
         fila = random.randint(0, filas - 1)
         col = random.randint(0, cols - 1)
 
-        if tablero[fila, col] in ["O", " "]:
-            if tablero[fila, col] == "O":
-                tablero[fila, col] = "X"
+        if tablero[fila, col] in [BARCO,AGUA]:
+            if tablero[fila, col] == BARCO:
+                tablero[fila, col] = IMPACTO
                 print(f"¡Impacto en ({fila}, {col})!")
                 print(tablero)
                 return True
             else:
-                tablero[fila, col] = "-"
+                tablero[fila, col] = AGUA
                 print(f"Agua en ({fila}, {col}).")
                 print(tablero)
                 return False
             
 def comprobar_derrota(tablero):                                     
-    """Devuelve True si no quedan barcos ('O') en el tablero."""
-    return not np.any(tablero == "O")
+    """Devuelve True si no quedan barcos en el tablero."""
+    return not np.any(tablero == BARCO)
 
  ####################################           
 #if __name__ == "__main__":
