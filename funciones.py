@@ -113,24 +113,35 @@ def calcular_estadisticas(tablero):
         "casillas_barco_totales": casillas_barco,
     }
 
-def mostrar_tablero(tablero, ocultar_barcos=False):
-    simbolos = {
-        AGUA: "~",
-        BARCO: "B" if not ocultar_barcos else "~",
-        IMPACTO: "X",
-        FALLO: "O",
-        "P": "P" if not ocultar_barcos else "~",
-        "M": "M" if not ocultar_barcos else "~",
-        "G": "G" if not ocultar_barcos else "~",
-        "E": "E" if not ocultar_barcos else "~",
-    }
 
-    filas, columnas = tablero.shape
-    print("   " + " ".join(str(c+1) for c in range(columnas)))
+def mostrar_tablero(tablero, titulo="Tablero"):
+    print(f"\n=== {titulo} ===")
+    
+    # Encabezado de columnas
+    print("    " + " ".join([str(i) for i in range(tablero.shape[1])]))
+    
+    # Filas del tablero
+    for i in range(tablero.shape[0]):
+        print(f"{i:2}  " + " ".join(tablero[i]))
 
-    for f in range(filas):
-        fila_str = " ".join(simbolos[val] for val in tablero[f])
-        print(f"{f+1:2} {fila_str}")
+# def mostrar_tablero(tablero, ocultar_barcos=False):
+#     simbolos = {
+#         AGUA: "~",
+#         BARCO: "B" if not ocultar_barcos else "~",
+#         IMPACTO: "X",
+#         FALLO: "O",
+#         "P": "P" if not ocultar_barcos else "~",
+#         "M": "M" if not ocultar_barcos else "~",
+#         "G": "G" if not ocultar_barcos else "~",
+#         "E": "E" if not ocultar_barcos else "~",
+#     }
+
+#     filas, columnas = tablero.shape
+#     print("   " + " ".join(str(c+1) for c in range(columnas)))
+
+#     for f in range(filas):
+#         fila_str = " ".join(simbolos[val] for val in tablero[f])
+#         print(f"{f+1:2} {fila_str}")
 
 
 def disparar(tablero_rival, tablero_rival_2, fila, col):
