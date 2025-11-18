@@ -4,10 +4,12 @@ import random
 from variables import *
 import numpy as np
 
-# Convención de códigos:
+# Convención de códigos: # ¿Si da un impacto pone un 2 y si falla ponemos un 3? No veo el sentido de mezclar en el tablero str y int.
 IMPACTO = 2
 FALLO = 3
 
+
+# ¿Para que queremos una funcion crear tablero si ya tenemos los tableros en variables? ¿Eliminamos?
 def crear_tablero(filas=10, columnas=10):
   
     # Crea un tablero vacío usando NumPy.
@@ -21,7 +23,7 @@ def colocar_barco(tablero, fila, columna, longitud, orientacion):
     # Coloca un barco en el tablero NumPy.
     # Orientacion: 'H' (horizontal) o 'V' (vertical).
     # Lanza ValueError si se sale del tablero o pisa otro barco.
-  
+    
     filas, columnas = tablero.shape
 
     if orientacion == "H":
@@ -43,10 +45,54 @@ def colocar_barco(tablero, fila, columna, longitud, orientacion):
             raise ValueError("Casilla ocupada al colocar el barco (vertical).")
 
         tablero[fila:fila + longitud, columna] = BARCO
+       
 
     else:
         raise ValueError("La orientación debe ser 'H' o 'V'.")
     return tablero
+######################################################################################
+def colocar_barco_jugador(tablero, longitud, nombre_barco, simbolo):
+    filas, columnas = tablero.shape
+
+    while True:
+        print(f"\nColocando {nombre_barco} (longitud {longitud})")
+
+        try:
+            fila = int(input("Fila inicial: "))
+            columna = int(input("Columna inicial: "))
+        except ValueError:
+            print("❌ Usa números enteros.")
+            continue
+
+        if longitud > 1:
+            orientacion = input("Orientación (H/V): ").upper()
+            if orientacion not in ("H", "V"):
+                print("❌ Orientación incorrecta.")
+                continue
+        else:
+            orientacion = "H"  # para barcos de 1 casilla da igual
+
+        try:
+            colocar_barco(tablero, fila, columna, longitud, orientacion, simbolo)
+
+            coords = []
+            for d in range(longitud):
+                r = fila + d if orientacion == "V" else fila
+                c = columna + d if orientacion == "H" else columna
+                coords.append((r, c))
+
+            return coords  # coordenadas del barco entero
+
+        except ValueError as e:
+            print(f"❌ {e}")
+            continue
+
+
+def mostrar_flota(flota):
+    print("\n📍 Coordenadas de tu flota:")
+    for barco in flota:
+        print(barco)
+####################################################################################
 
 
 def calcular_estadisticas(tablero):

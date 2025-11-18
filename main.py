@@ -16,10 +16,8 @@ while True:
     print("- Si aciertas, vuelves a disparar. Si fallas, dispara la máquina.\n")
     nombre = input("Introduce tu nombre: ")
 
-    # Crear tableros
-    tablero_jugador = crear_tablero()    
-    tablero_rival = crear_tablero()
-    tablero_rival_visible = crear_tablero()
+    # Crear tableros: Ya definidas en variables:
+    
 
     # Colocar barcos (solo inputs del jugador)
     print(f"\nHola {nombre}, coloca tus barcos en el tablero.")
@@ -29,17 +27,36 @@ while True:
     print("- 2 barcos de 3 posiciones")
     print("- 1 barco de 4 posiciones")
 
-    barco_peq1 = tuple(input(f'Dime las coordenadas de tu primer barco pequeño (1/4):\n'))
-    barco_peq2 = tuple(input(f'Dime las coordenadas de tu primer barco pequeño (2/4):\n'))
-    barco_peq3 = tuple(input(f'Dime las coordenadas de tu primer barco pequeño (3/4):\n'))
-    barco_peq4 = tuple(input(f'Dime las coordenadas de tu primer barco pequeño (4/4):\n'))
-    flota_peq_jugador = [barco_peq1,barco_peq2,barco_peq3,barco_peq4]
-
-    barco_med1 = tuple(input(f'Dime las coordenadas de tu primer barco pequeño (1/4):\n'))
-    barco_med2 = tuple(input(f'Dime las coordenadas de tu primer barco pequeño (2/4):\n'))
-    barco_med3 = tuple(input(f'Dime las coordenadas de tu primer barco pequeño (3/4):\n'))
+    # Flotas de barcos jugador:
    
-    flota_med_jugador = [barco_med1,barco_med2,barco_med3,barco_med4]
+    flota_jugador = []
+
+    # 4 barcos pequeños (1 casilla)
+    for i in range(4):
+        coords = colocar_barco_jugador(tablero_jugador, 1, "barco pequeño", "P")
+        flota_jugador.append(coords)
+
+    # 3 barcos medianos (2 casillas)
+    for i in range(3):
+        coords = colocar_barco_jugador(tablero_jugador, 2, "barco mediano", "M")
+        flota_jugador.append(coords)
+
+    # 2 barcos grandes (3 casillas)
+    for i in range(2):
+        coords = colocar_barco_jugador(tablero_jugador, 3, "barco grande", "G")
+        flota_jugador.append(coords)
+
+    # 1 barco gigante (4 casillas)
+    coords = colocar_barco_jugador(tablero_jugador, 4, "barco gigante", "E")
+    flota_jugador.append(coords)
+
+    # Mostrar flota
+    mostrar_flota(flota_jugador)
+
+    print("\n🛳️ Tu tablero queda así:\n")
+    print(tablero_jugador)
+
+      
 
 
 
