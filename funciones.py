@@ -164,46 +164,6 @@ def comprobar_derrota(tablero):
     # Devuelve True si no quedan barcos en el tablero.
     return not np.any(tablero == BARCO)
 
- ####################################           
-#if __name__ == "__main__":
-    # 1. Crear tablero vacío
-    tablero = crear_tablero(10, 10)
-    print("Tablero vacío:")
-    mostrar_tablero(tablero)
-    print()
-
-    # 2. Colocar un barco horizontal
-    print("Colocando barco horizontal en (fila=2, col=3) longitud 4...")
-    colocar_barco(tablero, fila=2, columna=3, longitud=4, orientacion="H")
-    mostrar_tablero(tablero)
-    print()
-
-    # 3. Colocar un barco vertical
-    print("Colocando barco vertical en (fila=5, col=0) longitud 3...")
-    colocar_barco(tablero, fila=5, columna=0, longitud=3, orientacion="V")
-    mostrar_tablero(tablero)
-    print()
-
-    # 4. Intentar colocar un barco que se sale del tablero (debe dar error)
-    print("Intentando colocar barco que se sale del tablero...")
-    try:
-        colocar_barco(tablero, fila=9, columna=8, longitud=4, orientacion="H")
-    except ValueError as e:
-        print("✅ Error controlado:", e)
-    else:
-        print("❌ No se ha producido error y debería haberse producido.")
-    print()
-
-    # 5. Intentar solapar barcos (debe dar error)
-    print("Intentando solapar un barco sobre otro...")
-    try:
-        colocar_barco(tablero, fila=2, columna=4, longitud=3, orientacion="H")
-    except ValueError as e:
-        print("✅ Error controlado:", e)
-    else:
-        print("❌ No se ha producido error y debería haberse producido.")
-    print()
-##################################
 
 def flota_peq_aleatorio(tablero):
     # Dimensiones de tablero:
@@ -451,3 +411,43 @@ def flota_enorme_aleatoria(tablero, flota_peq,flota_med,flota_grand):
 
 
 
+ ####################################           
+#if __name__ == "__main__":
+    # 1. Crear tablero vacío
+    tablero = crear_tablero(10, 10)
+    print("Tablero vacío:")
+    mostrar_tablero(tablero)
+    print()
+
+    # 2. Colocar un barco horizontal
+    print("Colocando barco horizontal en (fila=2, col=3) longitud 4...")
+    colocar_barco(tablero, fila=2, columna=3, longitud=4, orientacion="H")
+    mostrar_tablero(tablero)
+    print()
+
+    # 3. Colocar un barco vertical
+    print("Colocando barco vertical en (fila=5, col=0) longitud 3...")
+    colocar_barco(tablero, fila=5, columna=0, longitud=3, orientacion="V")
+    mostrar_tablero(tablero)
+    print()
+
+    # 4. Intentar colocar un barco que se sale del tablero (debe dar error)
+    print("Intentando colocar barco que se sale del tablero...")
+    try:
+        colocar_barco(tablero, fila=9, columna=8, longitud=4, orientacion="H")
+    except ValueError as e:
+        print("✅ Error controlado:", e)
+    else:
+        print("❌ No se ha producido error y debería haberse producido.")
+    print()
+
+    # 5. Intentar solapar barcos (debe dar error)
+    print("Intentando solapar un barco sobre otro...")
+    try:
+        colocar_barco(tablero, fila=2, columna=4, longitud=3, orientacion="H")
+    except ValueError as e:
+        print("✅ Error controlado:", e)
+    else:
+        print("❌ No se ha producido error y debería haberse producido.")
+    print()
+##################################

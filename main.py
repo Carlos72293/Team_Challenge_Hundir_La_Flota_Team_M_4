@@ -1,9 +1,10 @@
-# Importar archivos
+# MAIN
 from variables import *
-from clases import *
+from clases import Tablero
+from funciones import *
 import numpy as np
 import random
-from funciones import *
+
 # ==============================
 # PROGRAMA PRINCIPAL
 # ==============================
@@ -13,11 +14,14 @@ while True:
     print("- Tablero de 10x10.")
     print("- Dispara introduciendo fila y columna (0–9).")
     print("- Si aciertas, vuelves a disparar. Si fallas, dispara la máquina.\n")
+    
     nombre = input("Introduce tu nombre: ")
-    # Crear tableros (de variables.py)
-    tablero_jugador = crear_tablero()
-    tablero_rival = crear_tablero()
-    tablero_rival_visible = crear_tablero()
+
+    # ====== Crear tableros ======
+    tablero_jugador = Tablero()
+    tablero_rival = Tablero()
+    tablero_rival_visible = Tablero()
+
     # ==============================
     # COLOCAR BARCOS DEL JUGADOR
     # ==============================
@@ -27,81 +31,105 @@ while True:
     print("- 3 barcos de 2 posiciones")
     print("- 2 barcos de 3 posiciones")
     print("- 1 barco de 4 posiciones")
+
     flota_jugador = []
-    # 4 barcos pequeños
-    for i in range(4):
-        coords = colocar_barco_jugador(tablero_jugador, 1, "barco pequeño", BARCO)
+
+    # Barcos tamaño 1
+    for _ in range(4):
+        coords = tablero_jugador.colocar_barco_jugador(1, "barco pequeño")
         flota_jugador.append(coords)
-        print(tablero_jugador)
-    # 3 barcos medianos
-    for i in range(3):
-        coords = colocar_barco_jugador(tablero_jugador, 2, "barco mediano",BARCO)
+        tablero_jugador.mostrar("Tu tablero")
+
+    # Barcos tamaño 2
+    for _ in range(3):
+        coords = tablero_jugador.colocar_barco_jugador(2, "barco mediano")
         flota_jugador.append(coords)
-        print(tablero_jugador)
-    # 2 barcos grandes
-    for i in range(2):
-        coords = colocar_barco_jugador(tablero_jugador, 3, "barco grande", BARCO)
+        tablero_jugador.mostrar("Tu tablero")
+
+    # Barcos tamaño 3
+    for _ in range(2):
+        coords = tablero_jugador.colocar_barco_jugador(3, "barco grande")
         flota_jugador.append(coords)
-        print(tablero_jugador)
-    # 1 barco gigante
-    coords = colocar_barco_jugador(tablero_jugador, 4, "barco gigante", BARCO)
+        tablero_jugador.mostrar("Tu tablero")
+
+    # Barco tamaño 4
+    coords = tablero_jugador.colocar_barco_jugador(4, "barco gigante")
     flota_jugador.append(coords)
+
     # ==============================
     # COLOCAR BARCOS DEL RIVAL
     # ==============================
     print("\nColocando barcos del rival aleatoriamente...")
-    flota_peq, tablero_rival = flota_peq_aleatorio(tablero_rival)
-    flota_med, tablero_rival = flota_med_aleatoria(tablero_rival, flota_peq)
-    flota_grand, tablero_rival = flota_grand_aleatoria(tablero_rival, flota_peq, flota_med)
-    flota_gigante, tablero_rival = flota_enorme_aleatoria(tablero_rival, flota_peq, flota_med, flota_grand)
+
+    flota_peq, tablero_rival.matriz = flota_peq_aleatorio(tablero_rival.matriz)
+    flota_med, tablero_rival.matriz = flota_med_aleatoria(tablero_rival.matriz, flota_peq)
+    flota_grand, tablero_rival.matriz = flota_grand_aleatoria(
+        tablero_rival.matriz, flota_peq, flota_med
+    )
+    flota_gigante, tablero_rival.matriz = flota_enorme_aleatoria(
+        tablero_rival.matriz, flota_peq, flota_med, flota_grand
+    )
+
     turno_jugador = True
+
     # ==============================
     # BUCLE DE PARTIDA
     # ==============================
     while True:
-         # Tu tablero con todos tus barcos visibles
         print("\nTu tablero:")
-        mostrar_tablero(tablero_jugador)
-        # Tablero enemigo: sin mostrar barcos, solo X y O
+        tablero_jugador.mostrar("Jugador")
+
         print("\nTablero enemigo visible:")
-        mostrar_tablero(tablero_rival_visible)
+        tablero_rival_visible.mostrar("Enemigo (visible)")
+
         if turno_jugador:
             print(f"\nTurno de {nombre}:")
             try:
-                fila, col = map(int, input("Introduce las coordenadas para disparar (fila,col): ").split(","))
+                fila, col = map(int, input("Introduce las coordenadas (fila,col): ").split(","))
             except:
                 print("Formato incorrecto. Usa fila,col (ejemplo: 3,5).")
                 continue
-            resultado = disparar(tablero_rival, tablero_rival_visible, fila, col)
+
+            resultado = tablero_rival.disparar(fila, col)
+
+            # Reflejar en tablero visible
             if resultado is True:
-                print(":dardo: ¡Has acertado! Vuelves a disparar.")
+                tablero_rival_visible.matriz[fila, col] = IMPACTO
+                print("🎯 ¡Has acertado! Vuelves a disparar.")
             elif resultado is False:
-                print(":océano: Has fallado. Le toca a la máquina.")
+                tablero_rival_visible.matriz[fila, col] = FALLO
+                print("🌊 Has fallado. Le toca a la máquina.")
                 turno_jugador = False
             else:
-                print(":advertencia: Esa posición ya fue atacada, el turno pasa igualmente.")
+                print("⚠️ Ya habías disparado ahí.")
                 turno_jugador = False
-            if comprobar_derrota(tablero_rival):
-                print(f":gorro_de_fiesta: ¡{nombre} ha ganado! Todos los barcos enemigos han sido hundidos.")
+
+            if tablero_rival.derrota():
+                print(f"🎉 ¡{nombre} ha ganado! Todos los barcos enemigos han sido hundidos.")
                 break
+
         else:
             print("\nTurno de la máquina:")
-            resultado = disparo_rival(tablero_jugador)
+            resultado = disparo_rival(tablero_jugador.matriz)
+
             if resultado:
-                print(":bum: La máquina ha acertado y repite turno.")
+                print("💥 La máquina ha acertado y repite turno.")
                 turno_jugador = False
             else:
-                print(":gota: La máquina ha fallado. Te toca a ti.")
+                print("💧 La máquina ha fallado. Te toca a ti.")
                 turno_jugador = True
-            if comprobar_derrota(tablero_jugador):
-                print(":calavera: ¡La máquina ha ganado! Todos tus barcos han sido hundidos.")
+
+            if tablero_jugador.derrota():
+                print("💀 ¡La máquina ha ganado! Todos tus barcos han sido hundidos.")
                 break
+
     # ==============================
-    # FIN DE PARTIDA / REINICIO
+    # FIN DE PARTIDA
     # ==============================
     print("\nPartida terminada.")
-    calcular_estadisticas(tablero_jugador)
-    calcular_estadisticas(tablero_rival)
+    print("Estadísticas jugador:", tablero_jugador.estadisticas())
+    print("Estadísticas rival:", tablero_rival.estadisticas())
+
     opcion = input("¿Quieres jugar otra vez? (s/n): ").lower()
     if opcion != "s":
         print("¡Gracias por jugar! Hasta la próxima.")
