@@ -56,36 +56,35 @@ while True:
                 continue
 
 
-########################################################
-    # Flotas de barcos jugador:
-   
-    #flota_jugador = []
+    # ---- COLOCAR FLOTA DEL JUGADOR ----
+    flota_jugador = []
 
-    # 4 barcos pequeños (1 casilla)
-    #for i in range(4):
-   #     coords = colocar_barco_jugador(tablero_jugador, 1, "barco pequeño", "P")
-   #     flota_jugador.append(coords)
+    # 4 barcos de 1 casilla
+    for i in range(4):
+        coords = colocar_barco_jugador(tablero_jugador, 1, "barco pequeño", "P")
+        flota_jugador.append(coords)
 
-    # 3 barcos medianos (2 casillas)
-   # for i in range(3):
-  #      coords = colocar_barco_jugador(tablero_jugador, 2, "barco mediano", "M")
-  #      flota_jugador.append(coords)
+    # 3 barcos de 2 casillas
+    for i in range(3):
+        coords = colocar_barco_jugador(tablero_jugador, 2, "barco mediano", "M")
+        flota_jugador.append(coords)
 
-    # 2 barcos grandes (3 casillas)
-  #  for i in range(2):
- #       coords = colocar_barco_jugador(tablero_jugador, 3, "barco grande", "G")
-  #      flota_jugador.append(coords)
+    # 2 barcos de 3 casillas
+    for i in range(2):
+        coords = colocar_barco_jugador(tablero_jugador, 3, "barco grande", "G")
+        flota_jugador.append(coords)
 
-    # 1 barco gigante (4 casillas)
- #   coords = colocar_barco_jugador(tablero_jugador, 4, "barco gigante", "E")
-  #  flota_jugador.append(coords)
+    # 1 barco de 4 casillas
+    coords = colocar_barco_jugador(tablero_jugador, 4, "barco gigante", "E")
+    flota_jugador.append(coords)
 
     # Mostrar flota
- #   mostrar_flota(flota_jugador)
+    mostrar_flota(flota_jugador)
 
-  #  print("\n🛳️ Tu tablero queda así:\n")
- #   print(tablero_jugador)
-###########################################################
+    print("\n🛳️ Tu tablero queda así:\n")
+    mostrar_tablero(tablero_jugador)
+
+
 
 
 
