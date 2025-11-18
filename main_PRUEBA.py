@@ -1,9 +1,15 @@
 # Importar archivos
 from variables import *
-from funciones import *
+
 from clases import *
 import numpy as np
 import random
+
+import funciones
+print(">>> CARGANDO FUNCIONES DESDE:", funciones.__file__)
+from funciones import *
+
+
 
 # ==============================
 # PROGRAMA PRINCIPAL

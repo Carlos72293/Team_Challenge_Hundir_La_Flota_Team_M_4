@@ -18,7 +18,7 @@ def crear_tablero(filas=10, columnas=10):
     return np.full((filas, columnas), AGUA)
 
 
-#def colocar_barco(tablero, fila, columna, longitud, orientacion): 
+def colocar_barco(tablero, fila, columna, longitud, orientacion): 
 
    
     # Coloca un barco en el tablero NumPy.
@@ -51,7 +51,7 @@ def crear_tablero(filas=10, columnas=10):
     else:
         raise ValueError("La orientación debe ser 'H' o 'V'.")
     return tablero
-######################################################################################
+
 
 def colocar_barco_jugador(tablero, longitud, nombre_barco, simbolo):
     filas, columnas = tablero.shape
