@@ -127,8 +127,8 @@ while True:
     # FIN DE PARTIDA
     # ==============================
     print("\nPartida terminada.")
-    print("Estadísticas jugador:", tablero_jugador.estadisticas())
-    print("Estadísticas rival:", tablero_rival.estadisticas())
+    # print("Estadísticas jugador:", tablero_jugador.estadisticas())
+    # print("Estadísticas rival:", tablero_rival.estadisticas())
 
     opcion = input("¿Quieres jugar otra vez? (s/n): ").lower()
     if opcion != "s":
