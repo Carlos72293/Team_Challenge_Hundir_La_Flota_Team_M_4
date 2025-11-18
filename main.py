@@ -102,18 +102,29 @@ while True:
   #          print(f"→ Guardado: Barco de tamaño {tamaño}, orientación {orientacion}, en ({fila}, {col})")
 
     print("\nColocando barcos del rival aleatoriamente...")
+<<<<<<< Updated upstream
     flota_peq,tablero_rival = flota_peq_aleatorio(tablero_rival)
     flota_med,tablero_rival = flota_med_aleatoria(tablero_rival, flota_peq)
     flota_grand,tablero_rival = flota_grand_aleatoria(tablero_rival, flota_peq,flota_med)
     flota_gigante, tablero_rival =  flota_enorme_aleatoria(tablero_rival, flota_peq,flota_med,flota_grand)
+=======
+    flota_peq, tablero_rival = flota_peq_aleatorio()
+    flota_med, tablero_rival = flota_med_aleatoria(tablero_rival, flota_peq)
+    flota_grand, tablero_rival = flota_grand_aleatoria(tablero_rival, flota_peq,flota_med)
+    flota_gig, tablero_rival = flota_enorme_aleatoria(tablero_rival, flota_peq,flota_med,flota_grand)
+>>>>>>> Stashed changes
 
     turno_jugador = True
 
     # ==============================
-    # BUCLE DE PARTIDA
+    # BUCLE DE PARTIDAp
     # ==============================
     while True:
+<<<<<<< Updated upstream
         print(tablero_jugador,'\n', tablero_rival)
+=======
+        print(tablero_jugador,'/n', tablero_rival_visible)
+>>>>>>> Stashed changes
 
         if turno_jugador:
             print(f"\nTurno de {nombre}:")
@@ -157,7 +168,7 @@ while True:
     # FIN DE PARTIDA / REINICIO
     # ==============================
     print("\nPartida terminada.")
-    calcular_estadisticas(tablero)
+    calcular_estadisticas(tablero_jugador)
     calcular_estadisticas(tablero_rival)
     
     opcion = input("¿Quieres jugar otra vez? (s/n): ").lower()
