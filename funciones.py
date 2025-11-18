@@ -87,31 +87,31 @@ def colocar_barco_jugador(tablero, longitud, nombre_barco, simbolo):
 
 
 
-def calcular_estadisticas(tablero):
+# def calcular_estadisticas(tablero):
    
-    # Calcula estadísticas básicas del tablero:
-        # - total_disparos
-        # - impactos (IMPACTO)
-        # - fallos (FALLO)
-        # - precision (impactos / total_disparos)
-        # - casillas_barco (total de celdas con BARCO o IMPACTO)
+#     # Calcula estadísticas básicas del tablero:
+#         # - total_disparos
+#         # - impactos (IMPACTO)
+#         # - fallos (FALLO)
+#         # - precision (impactos / total_disparos)
+#         # - casillas_barco (total de celdas con BARCO o IMPACTO)
    
-    impactos = np.count_nonzero(tablero == IMPACTO)
-    fallos = np.count_nonzero(tablero == FALLO)
-    total_disparos = impactos + fallos
+#     impactos = np.count_nonzero(tablero == IMPACTO)
+#     fallos = np.count_nonzero(tablero == FALLO)
+#     total_disparos = impactos + fallos
 
-    # Barcos aún enteros + barcos impactados
-    casillas_barco = np.count_nonzero((tablero == BARCO) | (tablero == IMPACTO))
+#     # Barcos aún enteros + barcos impactados
+#     casillas_barco = np.count_nonzero((tablero == BARCO) | (tablero == IMPACTO))
 
-    precision = impactos / total_disparos if total_disparos > 0 else 0.0
+#     precision = impactos / total_disparos if total_disparos > 0 else 0.0
 
-    return {
-        "total_disparos": total_disparos,
-        "impactos": impactos,
-        "fallos": fallos,
-        "precision": precision,
-        "casillas_barco_totales": casillas_barco,
-    }
+#     return {
+#         "total_disparos": total_disparos,
+#         "impactos": impactos,
+#         "fallos": fallos,
+#         "precision": precision,
+#         "casillas_barco_totales": casillas_barco,
+#     }
 
 
 def mostrar_tablero(tablero, titulo="Tablero"):
@@ -153,12 +153,11 @@ def disparo_rival(tablero):
             if tablero[fila, col] == BARCO:
                 tablero[fila, col] = IMPACTO
                 print(f"¡Impacto en ({fila}, {col})!")
-                print(tablero)
                 return True
             else:
                 tablero[fila, col] = AGUA
+                tablero[fila, col] = FALLO
                 print(f"Agua en ({fila}, {col}).")
-                print(tablero)
                 return False
             
 def comprobar_derrota(tablero):                                     
