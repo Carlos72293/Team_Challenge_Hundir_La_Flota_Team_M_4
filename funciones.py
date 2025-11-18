@@ -113,35 +113,23 @@ def calcular_estadisticas(tablero):
     }
 
 def mostrar_tablero(tablero, ocultar_barcos=False):
-    """
-    Muestra un tablero:
-    - Si ocultar_barcos=True → no se muestran P/M/G/E/B (solo '~', 'X', 'O')
-    - Si ocultar_barcos=False → se ven todos los barcos del jugador
-    """
-
     simbolos = {
         AGUA: "~",
+        BARCO: "B" if not ocultar_barcos else "~",
         IMPACTO: "X",
         FALLO: "O",
-
-        # Barcos del jugador
         "P": "P" if not ocultar_barcos else "~",
         "M": "M" if not ocultar_barcos else "~",
         "G": "G" if not ocultar_barcos else "~",
         "E": "E" if not ocultar_barcos else "~",
-
-        # Barcos del rival (si existieran en este tablero)
-        BARCO: "B" if not ocultar_barcos else "~",
     }
 
     filas, columnas = tablero.shape
-    print("\n   " + " ".join(str(i+1) for i in range(columnas)))
+    print("   " + " ".join(str(c+1) for c in range(columnas)))
 
     for f in range(filas):
-        fila_str = ""
-        for val in tablero[f]:
-            fila_str += simbolos.get(val, "~") + " "
-        print(f"{str(f+1).rjust(2)} {fila_str}")
+        fila_str = " ".join(simbolos[val] for val in tablero[f])
+        print(f"{f+1:2} {fila_str}")
 
 
 def disparar(tablero_rival, tablero_rival_2, fila, col):

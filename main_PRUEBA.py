@@ -56,10 +56,11 @@ while True:
     flota_jugador.append(coords)
 
     # Mostrar flota
-    mostrar_flota(flota_jugador)
+    
 
     print("\n🛳️ Tu tablero queda así:\n")
     mostrar_tablero(tablero_jugador, ocultar_barcos=False)
+    mostrar_tablero(tablero_rival_visible, ocultar_barcos=True)
 
     # ==============================
     # COLOCAR BARCOS DEL RIVAL

@@ -104,6 +104,7 @@ while True:
     print("\nColocando barcos del rival aleatoriamente...")
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     flota_peq,tablero_rival = flota_peq_aleatorio(tablero_rival)
     flota_med,tablero_rival = flota_med_aleatoria(tablero_rival, flota_peq)
     flota_grand,tablero_rival = flota_grand_aleatoria(tablero_rival, flota_peq,flota_med)
@@ -111,11 +112,16 @@ while True:
 =======
 =======
 >>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
     flota_peq, tablero_rival = flota_peq_aleatorio()
     flota_med, tablero_rival = flota_med_aleatoria(tablero_rival, flota_peq)
     flota_grand, tablero_rival = flota_grand_aleatoria(tablero_rival, flota_peq,flota_med)
     flota_gig, tablero_rival = flota_enorme_aleatoria(tablero_rival, flota_peq,flota_med,flota_grand)
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -128,7 +134,11 @@ while True:
     while True:
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         print(tablero_jugador,'\n', tablero_rival)
+=======
+        print(tablero_jugador,'/n', tablero_rival_visible)
+>>>>>>> Stashed changes
 =======
         print(tablero_jugador,'/n', tablero_rival_visible)
 >>>>>>> Stashed changes
