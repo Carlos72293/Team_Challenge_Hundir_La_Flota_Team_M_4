@@ -132,6 +132,18 @@ def calcular_estadisticas(tablero):
         "casillas_barco_totales": casillas_barco,
     }
 
+def mostrar_tablero(tablero, titulo="Tablero"):
+    print(f"\n=== {titulo} ===")
+    
+    # Encabezado de columnas
+    print("    " + " ".join([str(i) for i in range(tablero.shape[1])]))
+    
+    # Filas del tablero
+    for i in range(tablero.shape[0]):
+        print(f"{i:2}  " + " ".join(tablero[i]))
+
+
+"""
 def mostrar_tablero(tablero, mostrar_barcos=True):
    
     # Muestra el tablero por consola.
@@ -152,6 +164,7 @@ def mostrar_tablero(tablero, mostrar_barcos=True):
             print(f" {f+1} {fila_str}")
         elif f == 9:
             print(f"{f+1} {fila_str}")
+"""
 
 def disparar(tablero_rival, tablero_rival_2, fila, col):
     # Devuelve True si acierta, False si falla, None si ya disparó ahí.

@@ -62,9 +62,7 @@ while True:
     # Mostrar flota
     mostrar_flota(flota_jugador)
 
-    print("\n🛳️ Tu tablero queda así:\n")
-    mostrar_tablero(tablero_jugador)
-
+    
     # ==============================
     # COLOCAR BARCOS DEL RIVAL
     # ==============================
@@ -85,7 +83,7 @@ while True:
         mostrar_tablero(tablero_jugador)
 
         print("\nTablero enemigo visible:")
-        mostrar_tablero(tablero_rival_visible, mostrar_barcos=False)
+        mostrar_tablero(tablero_rival_visible)
 
         if turno_jugador:
             print(f"\nTurno de {nombre}:")
