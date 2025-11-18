@@ -17,7 +17,10 @@ while True:
     nombre = input("Introduce tu nombre: ")
 
     # Crear tableros: Ya definidas en variables:
-    
+    tablero_jugador = crear_tablero()
+    tablero_rival = crear_tablero()
+    tablero_rival_visible = crear_tablero()
+
 
     # Colocar barcos (solo inputs del jugador)
     print(f"\nHola {nombre}, coloca tus barcos en el tablero.")
@@ -27,51 +30,77 @@ while True:
     print("- 2 barcos de 3 posiciones")
     print("- 1 barco de 4 posiciones")
 
-    # Flotas de barcos jugador:
-   
-    flota_jugador = []
-
-    # 4 barcos pequeños (1 casilla)
-    for i in range(4):
-        coords = colocar_barco_jugador(tablero_jugador, 1, "barco pequeño", "P")
-        flota_jugador.append(coords)
-
-    # 3 barcos medianos (2 casillas)
-    for i in range(3):
-        coords = colocar_barco_jugador(tablero_jugador, 2, "barco mediano", "M")
-        flota_jugador.append(coords)
-
-    # 2 barcos grandes (3 casillas)
-    for i in range(2):
-        coords = colocar_barco_jugador(tablero_jugador, 3, "barco grande", "G")
-        flota_jugador.append(coords)
-
-    # 1 barco gigante (4 casillas)
-    coords = colocar_barco_jugador(tablero_jugador, 4, "barco gigante", "E")
-    flota_jugador.append(coords)
-
-    # Mostrar flota
-    mostrar_flota(flota_jugador)
-
-    print("\n🛳️ Tu tablero queda así:\n")
-    print(tablero_jugador)
-
-      
-
-
+    barcos = {1: 4, 2: 3, 3: 2, 4: 1}
 
     for tamaño, cantidad in barcos.items():
         for n in range(cantidad):
             print(f"\nBarco {n+1} de tamaño {tamaño}")
+
             orientacion = "H"
             if tamaño > 1:
                 orientacion = input("Orientación (H horizontal / V vertical): ").upper()
+
             try:
                 fila, col = map(int, input("Introduce la posición inicial (fila,col): ").split(","))
             except:
                 print("Formato incorrecto, usa 'fila,col' (ejemplo: 3,5).")
                 continue
-            print(f"→ Guardado: Barco de tamaño {tamaño}, orientación {orientacion}, en ({fila}, {col})")
+
+            try:
+                colocar_barco(tablero_jugador, fila, col, tamaño, orientacion)
+                print(f"→ Colocado barco de tamaño {tamaño} en ({fila}, {col}) orientado {orientacion}")
+                print(tablero_jugador)
+            except ValueError as e:
+                print(f"❌ {e}")
+                print("Intenta colocar de nuevo este barco.")
+                continue
+
+
+########################################################
+    # Flotas de barcos jugador:
+   
+    #flota_jugador = []
+
+    # 4 barcos pequeños (1 casilla)
+    #for i in range(4):
+   #     coords = colocar_barco_jugador(tablero_jugador, 1, "barco pequeño", "P")
+   #     flota_jugador.append(coords)
+
+    # 3 barcos medianos (2 casillas)
+   # for i in range(3):
+  #      coords = colocar_barco_jugador(tablero_jugador, 2, "barco mediano", "M")
+  #      flota_jugador.append(coords)
+
+    # 2 barcos grandes (3 casillas)
+  #  for i in range(2):
+ #       coords = colocar_barco_jugador(tablero_jugador, 3, "barco grande", "G")
+  #      flota_jugador.append(coords)
+
+    # 1 barco gigante (4 casillas)
+ #   coords = colocar_barco_jugador(tablero_jugador, 4, "barco gigante", "E")
+  #  flota_jugador.append(coords)
+
+    # Mostrar flota
+ #   mostrar_flota(flota_jugador)
+
+  #  print("\n🛳️ Tu tablero queda así:\n")
+ #   print(tablero_jugador)
+###########################################################
+
+
+
+ #   for tamaño, cantidad in barcos.items():
+ #       for n in range(cantidad):
+  #          print(f"\nBarco {n+1} de tamaño {tamaño}")
+ #           orientacion = "H"
+  #          if tamaño > 1:
+  #              orientacion = input("Orientación (H horizontal / V vertical): ").upper()
+ #           try:
+  #              fila, col = map(int, input("Introduce la posición inicial (fila,col): ").split(","))
+  #          except:
+  #              print("Formato incorrecto, usa 'fila,col' (ejemplo: 3,5).")
+  #              continue
+  #          print(f"→ Guardado: Barco de tamaño {tamaño}, orientación {orientacion}, en ({fila}, {col})")
 
     print("\nColocando barcos del rival aleatoriamente...")
     flota_peq,tablero_rival = flota_peq_aleatorio(tablero_rival)

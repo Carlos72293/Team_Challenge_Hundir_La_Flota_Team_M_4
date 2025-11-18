@@ -51,7 +51,7 @@ def colocar_barco(tablero, fila, columna, longitud, orientacion):
         raise ValueError("La orientación debe ser 'H' o 'V'.")
     return tablero
 ######################################################################################
-def colocar_barco_jugador(tablero, longitud, nombre_barco, simbolo):
+#def colocar_barco_jugador(tablero, longitud, nombre_barco, simbolo):
     filas, columnas = tablero.shape
 
     while True:
@@ -88,7 +88,7 @@ def colocar_barco_jugador(tablero, longitud, nombre_barco, simbolo):
             continue
 
 
-def mostrar_flota(flota):
+#def mostrar_flota(flota):
     print("\n📍 Coordenadas de tu flota:")
     for barco in flota:
         print(barco)
