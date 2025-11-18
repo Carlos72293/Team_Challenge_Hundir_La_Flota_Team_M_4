@@ -1,12 +1,8 @@
 # Importar archivos
 from variables import *
-
 from clases import *
 import numpy as np
 import random
-
-import funciones
-print(">>> CARGANDO FUNCIONES DESDE:", funciones.__file__)
 from funciones import *
 
 
@@ -63,7 +59,7 @@ while True:
     mostrar_flota(flota_jugador)
 
     print("\n🛳️ Tu tablero queda así:\n")
-    mostrar_tablero(tablero_jugador)
+    mostrar_tablero(tablero_jugador, ocultar_barcos=False)
 
     # ==============================
     # COLOCAR BARCOS DEL RIVAL
@@ -81,11 +77,13 @@ while True:
     # BUCLE DE PARTIDA
     # ==============================
     while True:
+         # Tu tablero con todos tus barcos visibles
         print("\nTu tablero:")
-        mostrar_tablero(tablero_jugador)
+        mostrar_tablero(tablero_jugador, ocultar_barcos=False)
 
+        # Tablero enemigo: sin mostrar barcos, solo X y O
         print("\nTablero enemigo visible:")
-        mostrar_tablero(tablero_rival_visible, mostrar_barcos=False)
+        mostrar_tablero(tablero_rival_visible, ocultar_barcos=True)
 
         if turno_jugador:
             print(f"\nTurno de {nombre}:")
