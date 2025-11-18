@@ -18,7 +18,8 @@ def crear_tablero(filas=10, columnas=10):
     return np.full((filas, columnas), AGUA)
 
 
-def colocar_barco(tablero, fila, columna, longitud, orientacion): 
+#def colocar_barco(tablero, fila, columna, longitud, orientacion): 
+
    
     # Coloca un barco en el tablero NumPy.
     # Orientacion: 'H' (horizontal) o 'V' (vertical).
@@ -51,7 +52,8 @@ def colocar_barco(tablero, fila, columna, longitud, orientacion):
         raise ValueError("La orientación debe ser 'H' o 'V'.")
     return tablero
 ######################################################################################
-#def colocar_barco_jugador(tablero, longitud, nombre_barco, simbolo):
+
+def colocar_barco_jugador(tablero, longitud, nombre_barco, simbolo):
     filas, columnas = tablero.shape
 
     while True:
@@ -64,16 +66,21 @@ def colocar_barco(tablero, fila, columna, longitud, orientacion):
             print("❌ Usa números enteros.")
             continue
 
+        if not (0 <= fila < filas and 0 <= columna < columnas):
+            print("❌ Coordenadas fuera del tablero.")
+            continue
+
         if longitud > 1:
             orientacion = input("Orientación (H/V): ").upper()
             if orientacion not in ("H", "V"):
                 print("❌ Orientación incorrecta.")
                 continue
         else:
-            orientacion = "H"  # para barcos de 1 casilla da igual
+            orientacion = "H"  # Da igual para barcos pequeños
 
         try:
-            colocar_barco(tablero, fila, columna, longitud, orientacion, simbolo)
+            # ⛔ IMPORTANTE: esta llamada debe ser EXACTA
+            colocar_barco(tablero, fila, columna, longitud, orientacion)
 
             coords = []
             for d in range(longitud):
@@ -81,14 +88,18 @@ def colocar_barco(tablero, fila, columna, longitud, orientacion):
                 c = columna + d if orientacion == "H" else columna
                 coords.append((r, c))
 
-            return coords  # coordenadas del barco entero
+            # Cambiar símbolo en el tablero
+            for (r, c) in coords:
+                tablero[r, c] = simbolo
+
+            return coords
 
         except ValueError as e:
             print(f"❌ {e}")
             continue
 
 
-#def mostrar_flota(flota):
+def mostrar_flota(flota):
     print("\n📍 Coordenadas de tu flota:")
     for barco in flota:
         print(barco)
@@ -182,8 +193,8 @@ def comprobar_derrota(tablero):
     """Devuelve True si no quedan barcos ('O') en el tablero."""
     return not np.any(tablero == "O")
 
-            
-if __name__ == "__main__":
+ ####################################           
+#if __name__ == "__main__":
     # 1. Crear tablero vacío
     tablero = crear_tablero(10, 10)
     print("Tablero vacío:")
@@ -221,7 +232,7 @@ if __name__ == "__main__":
     else:
         print("❌ No se ha producido error y debería haberse producido.")
     print()
-
+##################################
 
 def flota_peq_aleatorio(tablero):
     # Dimensiones de tablero:
