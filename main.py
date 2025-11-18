@@ -34,6 +34,15 @@ while True:
     barco_peq3 = tuple(input(f'Dime las coordenadas de tu primer barco pequeño (3/4):\n'))
     barco_peq4 = tuple(input(f'Dime las coordenadas de tu primer barco pequeño (4/4):\n'))
     flota_peq_jugador = [barco_peq1,barco_peq2,barco_peq3,barco_peq4]
+
+    barco_med1 = tuple(input(f'Dime las coordenadas de tu primer barco pequeño (1/4):\n'))
+    barco_med2 = tuple(input(f'Dime las coordenadas de tu primer barco pequeño (2/4):\n'))
+    barco_med3 = tuple(input(f'Dime las coordenadas de tu primer barco pequeño (3/4):\n'))
+   
+    flota_med_jugador = [barco_med1,barco_med2,barco_med3,barco_med4]
+
+
+
     for tamaño, cantidad in barcos.items():
         for n in range(cantidad):
             print(f"\nBarco {n+1} de tamaño {tamaño}")

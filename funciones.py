@@ -2,11 +2,9 @@
 import numpy as np
 import random
 from variables import *
-
 import numpy as np
 
 # Convención de códigos:
-AGUA = 0
 IMPACTO = 2
 FALLO = 3
 
@@ -16,6 +14,7 @@ def crear_tablero(filas=10, columnas=10):
     # Cada casilla empieza como AGUA (0).
  
     return np.full((filas, columnas), AGUA)
+
 
 def colocar_barco(tablero, fila, columna, longitud, orientacion): 
    
@@ -48,6 +47,8 @@ def colocar_barco(tablero, fila, columna, longitud, orientacion):
     else:
         raise ValueError("La orientación debe ser 'H' o 'V'.")
     return tablero
+
+
 def calcular_estadisticas(tablero):
    
     # Calcula estadísticas básicas del tablero:
@@ -97,15 +98,15 @@ def mostrar_tablero(tablero, mostrar_barcos=True):
 
 def disparar(tablero_rival, tablero_rival_2, fila, col):
     # Devuelve True si acierta, False si falla, None si ya disparó ahí.
-    if tablero_rival[fila, col] == BARCO:
-        tablero_rival[fila, col] = IMPACTO
-        tablero_rival_2[fila, col] = IMPACTO
+    if tablero_rival[fila, col] == "O":
+        tablero_rival[fila, col] = "X"
+        tablero_rival_2[fila, col] = "X"
         print(f"¡Impacto en ({fila}, {col})!")
         print(tablero_rival_2)
         return True
-    elif tablero_rival[fila, col] == AGUA:
-        tablero_rival[fila, col] = FALLO
-        tablero_rival_2[fila, col] = FALLO
+    elif tablero_rival[fila, col] == " ":
+        tablero_rival[fila, col] = "-"
+        tablero_rival_2[fila, col] = "-"
         print(f"Agua en ({fila}, {col}).")
         print(tablero_rival_2)
         return False
@@ -132,8 +133,8 @@ def disparo_rival(tablero):
                 return False
             
 def comprobar_derrota(tablero):                                     
-    # Devuelve True si no quedan barcos ('O') en el tablero.
-    return not np.any(tablero == BARCO)
+    """Devuelve True si no quedan barcos ('O') en el tablero."""
+    return not np.any(tablero == "O")
 
             
 if __name__ == "__main__":
