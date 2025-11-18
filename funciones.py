@@ -4,9 +4,8 @@ import random
 from variables import *
 import numpy as np
 
-# Convención de códigos: # ¿Si da un impacto pone un 2 y si falla ponemos un 3? No veo el sentido de mezclar en el tablero str y int.
-IMPACTO = 2
-FALLO = 3
+
+
 
 
 # ¿Para que queremos una funcion crear tablero si ya tenemos los tableros en variables? ¿Eliminamos?
@@ -17,93 +16,74 @@ def crear_tablero(filas=10, columnas=10):
  
     return np.full((filas, columnas), AGUA)
 
-
-def colocar_barco(tablero, fila, columna, longitud, orientacion): 
-
-   
-    # Coloca un barco en el tablero NumPy.
-    # Orientacion: 'H' (horizontal) o 'V' (vertical).
-    # Lanza ValueError si se sale del tablero o pisa otro barco.
-    
-    filas, columnas = tablero.shape
-
-    if orientacion == "H":
-        if columna + longitud > columnas:
-            raise ValueError("El barco se sale del tablero (horizontal).")
-
-        zona = tablero[fila, columna:columna + longitud]
-        if np.any(zona != AGUA):
-            raise ValueError("Casilla ocupada al colocar el barco (horizontal).")
-
-        tablero[fila, columna:columna + longitud] = BARCO
-
-    elif orientacion == "V":
-        if fila + longitud > filas:
-            raise ValueError("El barco se sale del tablero (vertical).")
-
-        zona = tablero[fila:fila + longitud, columna]
-        if np.any(zona != AGUA):
-            raise ValueError("Casilla ocupada al colocar el barco (vertical).")
-
-        tablero[fila:fila + longitud, columna] = BARCO
-       
-
-    else:
-        raise ValueError("La orientación debe ser 'H' o 'V'.")
-    return tablero
-
-
 def colocar_barco_jugador(tablero, longitud, nombre_barco, simbolo):
     filas, columnas = tablero.shape
 
     while True:
-        print(f"\nColocando {nombre_barco} (longitud {longitud})")
+        print(f"\nColocando {nombre_barco} (tamaño {longitud})")
 
+        # ---------------------------
+        # PEDIR COORDENADAS INICIALES
+        # ---------------------------
         try:
             fila = int(input("Fila inicial: "))
             columna = int(input("Columna inicial: "))
         except ValueError:
-            print("❌ Usa números enteros.")
+            print("❌ Introduce números enteros.")
             continue
 
+        # Validar límites
         if not (0 <= fila < filas and 0 <= columna < columnas):
-            print("❌ Coordenadas fuera del tablero.")
+            print("❌ Esa casilla está fuera del tablero.")
             continue
 
-        if longitud > 1:
-            orientacion = input("Orientación (H/V): ").upper()
+        # ---------------------------
+        # ORIENTACIÓN
+        # ---------------------------
+        if longitud == 1:
+            orientacion = "H"     # Da igual para barcos de 1 casilla
+        else:
+            orientacion = input("Orientación (H horizontal / V vertical): ").upper()
             if orientacion not in ("H", "V"):
                 print("❌ Orientación incorrecta.")
                 continue
-        else:
-            orientacion = "H"  # Da igual para barcos pequeños
+
+        # ---------------------------
+        # CALCULAR TODAS LAS CASILLAS
+        # ---------------------------
+        coords = []
 
         try:
-            # ⛔ IMPORTANTE: esta llamada debe ser EXACTA
-            colocar_barco(tablero, fila, columna, longitud, orientacion)
-
-            coords = []
             for d in range(longitud):
                 r = fila + d if orientacion == "V" else fila
                 c = columna + d if orientacion == "H" else columna
+
+                # comprobar límites
+                if not (0 <= r < filas and 0 <= c < columnas):
+                    raise ValueError("El barco se sale del tablero.")
+
+                # comprobar ocupación
+                if tablero[r, c] != AGUA:
+                    raise ValueError("Casilla ocupada por otro barco.")
+
                 coords.append((r, c))
-
-            # Cambiar símbolo en el tablero
-            for (r, c) in coords:
-                tablero[r, c] = simbolo
-
-            return coords
 
         except ValueError as e:
             print(f"❌ {e}")
+            print("Intenta colocar de nuevo este barco.")
             continue
 
+        # ---------------------------
+        # COLOCAR BARCO EN EL TABLERO
+        # ---------------------------
+        for (r, c) in coords:
+            tablero[r, c] = simbolo
 
-def mostrar_flota(flota):
-    print("\n📍 Coordenadas de tu flota:")
-    for barco in flota:
-        print(barco)
-####################################################################################
+        print(f"✅ {nombre_barco} colocado en {coords}")
+        
+        return coords
+
+
 
 
 def calcular_estadisticas(tablero):
@@ -132,51 +112,37 @@ def calcular_estadisticas(tablero):
         "casillas_barco_totales": casillas_barco,
     }
 
-def mostrar_tablero(tablero, titulo="Tablero"):
-    print(f"\n=== {titulo} ===")
-    
-    # Encabezado de columnas
-    print("    " + " ".join([str(i) for i in range(tablero.shape[1])]))
-    
-    # Filas del tablero
-    for i in range(tablero.shape[0]):
-        print(f"{i:2}  " + " ".join(tablero[i]))
-
-
-"""
-def mostrar_tablero(tablero, mostrar_barcos=True):
-   
-    # Muestra el tablero por consola.
-    # Si mostrar_barcos es False, los BARCO se ven como agua (para ocultarlos al rival).
-    
+def mostrar_tablero(tablero, ocultar_barcos=False):
     simbolos = {
         AGUA: "~",
-        BARCO: "B" if mostrar_barcos else "~",
+        BARCO: "B" if not ocultar_barcos else "~",
         IMPACTO: "X",
         FALLO: "O",
+        "P": "P" if not ocultar_barcos else "~",
+        "M": "M" if not ocultar_barcos else "~",
+        "G": "G" if not ocultar_barcos else "~",
+        "E": "E" if not ocultar_barcos else "~",
     }
 
     filas, columnas = tablero.shape
-    print("   " + " ".join(str(c) for c in range(1,columnas+1)))
+    print("   " + " ".join(str(c+1) for c in range(columnas)))
+
     for f in range(filas):
         fila_str = " ".join(simbolos[val] for val in tablero[f])
-        if f <= 8:
-            print(f" {f+1} {fila_str}")
-        elif f == 9:
-            print(f"{f+1} {fila_str}")
-"""
+        print(f"{f+1:2} {fila_str}")
+
 
 def disparar(tablero_rival, tablero_rival_2, fila, col):
     # Devuelve True si acierta, False si falla, None si ya disparó ahí.
-    if tablero_rival[fila, col] == BARCO:
-        tablero_rival[fila, col] = IMPACTO
-        tablero_rival_2[fila, col] = IMPACTO
+    if tablero_rival[fila, col] == "O":
+        tablero_rival[fila, col] = "X"
+        tablero_rival_2[fila, col] = "X"
         print(f"¡Impacto en ({fila}, {col})!")
         print(tablero_rival_2)
         return True
-    elif tablero_rival[fila, col] == AGUA:
-        tablero_rival[fila, col] = FALLO
-        tablero_rival_2[fila, col] = FALLO
+    elif tablero_rival[fila, col] == " ":
+        tablero_rival[fila, col] = "-"
+        tablero_rival_2[fila, col] = "-"
         print(f"Agua en ({fila}, {col}).")
         print(tablero_rival_2)
         return False
@@ -191,20 +157,20 @@ def disparo_rival(tablero):
         col = random.randint(0, cols - 1)
 
         if tablero[fila, col] in ["O", " "]:
-            if tablero[fila, col] == BARCO:
-                tablero[fila, col] = IMPACTO
+            if tablero[fila, col] == "O":
+                tablero[fila, col] = "X"
                 print(f"¡Impacto en ({fila}, {col})!")
                 print(tablero)
                 return True
             else:
-                tablero[fila, col] = AGUA
+                tablero[fila, col] = "-"
                 print(f"Agua en ({fila}, {col}).")
                 print(tablero)
                 return False
             
 def comprobar_derrota(tablero):                                     
-    """Devuelve True si no quedan barcos en el tablero."""
-    return not np.any(tablero == BARCO)
+    """Devuelve True si no quedan barcos ('O') en el tablero."""
+    return not np.any(tablero == "O")
 
  ####################################           
 #if __name__ == "__main__":
