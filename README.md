@@ -8,15 +8,15 @@
 
 Como Team Challenge del Sprint 3 hemos creado nuestra propia versión del juego de **Hundir la flota** en Python. 
 
-Formamos parte del grupo 4 del turno de mañana, compuesto por: 
-- Carlos D'Olhaberriague Fernández
-- Elena Acosta Hernández
-- Eric Calvo Díaz
-- Francisco de las Cuevas
-- Lucas Cavalcante Balaguer
-- Qamar Bahra Al-Borghli
+Enlace al repositorio del TC: https://github.com/Carlos72293/Team_Challenge_Hundir_La_Flota_Team_M_4  
 
-Enlace al repositorio del TC: https://github.com/Carlos72293/Team_Challenge_Hundir_La_Flota_Team_M_4
+Formamos parte del grupo 4 del turno de mañana, compuesto por: 
+- Lucas Cavalcante Balaguer
+- Francisco de las Cuevas
+- Eric Calvo Díaz
+- Elena Acosta Hernández
+- Carlos D'Olhaberriague Fernández
+- Qamar Bahra Al-Borghli
 
 
 ## **Resumen del juego**
