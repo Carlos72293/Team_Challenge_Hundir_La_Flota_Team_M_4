@@ -63,12 +63,8 @@ while True:
 
     flota_peq, tablero_rival.matriz = flota_peq_aleatorio(tablero_rival.matriz)
     flota_med, tablero_rival.matriz = flota_med_aleatoria(tablero_rival.matriz, flota_peq)
-    flota_grand, tablero_rival.matriz = flota_grand_aleatoria(
-        tablero_rival.matriz, flota_peq, flota_med
-    )
-    flota_gigante, tablero_rival.matriz = flota_enorme_aleatoria(
-        tablero_rival.matriz, flota_peq, flota_med, flota_grand
-    )
+    flota_grand, tablero_rival.matriz = flota_grand_aleatoria(tablero_rival.matriz, flota_peq, flota_med)
+    flota_gigante, tablero_rival.matriz = flota_enorme_aleatoria(tablero_rival.matriz, flota_peq, flota_med, flota_grand)
 
     turno_jugador = True
 
